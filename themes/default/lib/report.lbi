@@ -1,0 +1,10 @@
+<div id="report" style="border:10px solid #eeeeee;height:150px;padding:50px;">
+	<table style="border:1px solid #EFF8FF">
+		{foreach from=$report_info.userFee item=fee key=k}
+		<tr><td>{$k}支付：</td><td>￥{$fee.money_paied}</td><td>占自由人：</td><td>{$fee.ratio}</td><td>结算：</td><td>￥{$fee.money_balance}</td></tr>
+		{/foreach}
+		
+		<tr><td>总额：￥{$report_info.totalFee}</td><td>人数：{$report_info.userCount}</td><td>平均费用：￥{$report_info.avgFee}</td><td colspan="3"></td></tr>
+		<tr><td colspan="2"></td><td colspan="2"><input type="button" name="settle_do"  value="结算！" /></td><td colspan="2"></td></tr>
+	</table>
+</div>

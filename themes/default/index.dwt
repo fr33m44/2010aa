@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    	<title>{$page_title}</title>
+    	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+	var process_request = "正在处理您的请求...";
+	</script>
+    	<script type="text/javascript" src="js/common.js"></script>
+    	<script type="text/javascript" src="js/transport.js"></script>
+	</head>
+    <body>
+    	<div id="wrapper">
+    		<div id="header"></div>
+    		<div id="main">
+    			<div id="left">
+    			
+    			</div>
+    			<div id="mid">
+    				<div id="nav">
+    					<h3 class="title"><img alt="user" src="themes/default/images/user.gif" />系统菜单</h3>
+    					<ul>
+    						<li><a href="?act=list"><span>所有费用</span></a></li>
+    						<li><a href="?act=list&is_public=1"><span>我的公费</span></a></li>
+    						<li><a href="?act=list&is_public=0"><span>我的私费</span></a></li>
+    						<li><a href="?act=add"><span>添加费用</span></a></li>
+    						<li><a href="?act=settlement"><span>结算费用</span></a></li>
+    						<li><a href="?act=modpass"><span>修改密码</span></a></li>
+    					</ul>
+    				</div>
+					{include file="$load_file"}
+    			</div>
+    			<div id="right"></div>
+    		</div>
+    	</div>
+	<script>
+		tableColor(document.getElementById('expenseTable'));
+		var process_request = "正在处理您的请求...";
+	</script>
+    </body>
+</html>

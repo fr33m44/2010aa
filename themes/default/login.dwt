@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+    	<title>
+    		{$page_title}
+    	</title>
+    	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    	<link type="text/css" rel="stylesheet" href="{$aa_css_path}" />
+		<script type="text/javascript"> 
+		{literal}
+		var app=navigator.appName;
+		var ver=navigator.appVersion;
+		if(app == 'Microsoft Internet Explorer' && ver.indexOf('MSIE6.0'))
+		{
+			window.location='?act=browserupdate';
+		}
+		{/literal}
+		</script> 
+
+    </head>
+    <body id="loginWindow">
+   		<div id="loginBox">
+   			<div id="loginInfo">
+   				<form action="?act=login" method="post">
+   				<table id="userInfo">
+   					<tr>
+   						<td width="20%" align="right">用户名：</td>
+   						<td width="80%" style="text-align:left"><input align="middle" type="text" name="username" class="inputText" size="15" /></td></tr>
+   					<tr>
+   						<td width="20%" align="right">密码：</td>
+   						<td width="80%" style="text-align:left"><input align="middle" type="password" name="password" class="inputText" size="15" /></td>
+   					</tr>
+   				</table>
+   				<div id="btn">
+   				   	<input type="submit" id="loginBtn" value="" />
+   					<input type="reset" id="loginReset" value="" />
+   					<input type="hidden" name="act" value="login"/>
+   					<span style="color:red">{$login_fail}</span>
+   				</div>
+   				</form>
+   			</div>
+   		</div>
+    </body>
+</html>

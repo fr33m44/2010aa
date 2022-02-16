@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    	<title>{$page_title}</title>
+    	<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+    <body>
+    	<div id="wrapper">
+    		<h1 style="padding-top:20px;font-size:18px;">对不起，我们不支持您当前使用的浏览器，建议使用IE8、Opera、Chrome、Firefox、Safari!<br />点击以下图标下载。</h1>
+    		<div id="browserList">
+    			<a href="http://www.google.com/chrome/"><img src="images/b/Chrome.png" alt="Google Chrome"></img></a>
+    			<a href="http://www.firefox.com"><img src="images/b/Firefox.png" alt="Firefox"></img></a>
+    			<a href="http://www.opera.com/"><img  src="images/b/Opera.png" alt="Opera"></img></a>
+    			<a href="http://www.apple.com.cn/safari/"><img src="images/b/Safari.png" alt="Safari"></img></a>
+    			<a href="http://www.microsoft.com/china/windows/internet-explorer/"><img src="images/b/IE.png" alt="IE"></img></a>
+    		</div>
+    	</div>
+    </body>
+</html>

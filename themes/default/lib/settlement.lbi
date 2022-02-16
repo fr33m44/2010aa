@@ -1,0 +1,175 @@
+<div id="content">
+    <h3 class="title"><img src="images/user.gif" alt="user" /> <span id="hello">{$smarty.session.u}：欢迎登录，今天是 {$now}</span><span id="logout"><a href="?act=logout">退出</a></span></h3>
+    <form method="post" action="?act=settlement" name="settlementForm">
+	<div id="tableWrapper">
+	    <h4 id="tableCaption"><img src="images/money.gif" alt="money" /><span>费用结算</span></h4>
+	    <table border="0" cellspacing="0" width="100%" id="expenseTable">
+		<thead>
+		</thead>
+		<tbody>
+		    <tr id="settlement_user_group">
+			<td style="text-align:right;" >消费组：</td>
+			<td style="text-align:left;padding-left:10px;">
+			    <table style="width:300px;text-align:left;float:left">
+				<tr>
+				    <td>
+					<select multiple="true" id="user_group" name="user_group[]">
+					</select>
+				    </td>
+				    <td>
+					<input type="button" value="删除>>" id="del" /><br />
+					<input type="button" value="<<添加" id="add" /><br />
+				    </td>
+				    <td>
+					<select id="user_group2">
+								    {foreach from=$users item=u}
+					    <option value="{$u.id}">{$u.user_name}</option>
+								    {/foreach}
+					</select>
+				    </td>
+				</tr>
+			    </table>
+			</td>
+		    </tr>
+		    <tr>
+			<td colspan="2"><input type="button" id="report_btn" value="生成报告" /></td>
+		    </tr>
+		    <tr>
+			<td id="report_wrapper" colspan="2">
+			</td>
+		    </tr>
+		</tbody>
+		<tfoot>
+		    <tr><td colspan="2"></td></tr>
+		</tfoot>
+	    </table>
+	</div>
+    </form>
+</div>
+<script>
+    {literal}
+    var process_request = "正在处理您的请求...";
+    var del=document.getElementById('del');
+    var add=document.getElementById('add');
+    var report_btn=document.getElementById('report_btn');
+    var report_wrapper=document.getElementById('report_wrapper');
+    var user_group=document.getElementById('user_group');
+    var user_group2=document.getElementById('user_group2');
+    var settle_do=document.getElementById('settle_do');
+    var selected=false;
+    var repeat=true;
+    report_btn.onclick=function()
+    {
+	userArr=new Array();
+	for(var i=0;i<user_group.length;i++)
+	{
+	    userArr.push(user_group[i].value);
+	}
+	Ajax.call('?act=settlement','user_group='+userArr,reportResponse,'POST','TEXT');
+
+    }
+    function getSettleJsResponse(result)
+    {
+	eval(result);
+    }
+    function reportResponse(result)
+    {
+	report_wrapper.innerHTML=result;
+    }
+
+    add.onclick=function()
+    {
+	for(var i=0;i<user_group2.options.length;i++)
+	{
+	    if(user_group2.options[i].selected == true)
+	    {
+		selected=true;
+		break;
+	    }
+	    else
+	    {
+		selected=false;
+	    }
+	}
+	if(!selected)
+	{
+	    alert('请在右边列表选定一个需添加的人');
+	}
+	else
+	{
+	    //判断重复
+	    for(var i=0;i<user_group2.options.length;i++)
+	    {
+		if(user_group2.options[i].selected == true)
+		{
+		    break;
+		}
+	    }
+	    for(var j=0;j<user_group.options.length;j++)
+	    {
+		if(user_group.options[j].value == user_group2.options[i].value)
+		{
+		    repeat=true;
+		    break;
+		}
+		else
+		{
+		    repeat=false;
+		}
+	    }
+	    if(user_group.options.length == 0 )
+	    {
+		//当添加消费人
+		repeat=false;
+	    }
+	    if(!repeat)
+	    {
+		var opt = document.createElement("option");
+		opt.value=user_group2.options[i].value;
+		opt.text=user_group2.options[i].text;
+		user_group.add(opt,null);
+	    }
+	}
+    }
+    del.onclick=function()
+    {
+	for(var i=0;i<user_group.options.length;i++)
+	{
+	    if(user_group.options[i].selected == true)
+	    {
+		selected=true;
+		break;
+	    }
+	    else
+	    {
+		selected=false;
+	    }
+	}
+	if(!selected)
+	{
+	    alert('请在左边列表选定一个需要删除的人');
+	}
+	else
+	{
+	    if(user_group.options.length > 2)
+	    {
+		user_group.remove(i);
+	    }
+	    else{
+		alert('至少得留2个人，才能叫“公费”吧');
+	    }
+	}
+    }
+
+    settle_do.onclick=function()
+    {
+	    userArr=new Array();
+	    for(var i=0;i<user_group.length;i++)
+	    {
+		    userArr.push(user_group[i].value);
+	    }
+	    Ajax.call('?act=settlement','user_group='+userArr+'&do=1',reportResponse,'POST','TEXT');
+
+    }
+    {/literal}
+</script>

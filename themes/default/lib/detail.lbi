@@ -1,0 +1,205 @@
+    				<div id="content">
+    					<h3 class="title"><img src="images/user.gif" alt="user" /> <span id="hello">{$smarty.session.u}：欢迎登录，今天是 {$now}</span><span id="logout"><a href="?act=logout">退出</a></span></h3>
+    					<form method="post" action="?act=detail" name="expenseForm">
+						<div id="tableWrapper">
+    						<h4 id="tableCaption"><img src="images/money.gif" alt="money" /><span>费用记录详情</span></h4>
+    						<table border="0" cellspacing="0" width="100%" id="expenseTable">
+    							<thead>
+    							</thead>
+    							<tbody>
+    									<tr><td style="text-align:right;">物品：</td><td style="text-align:left;padding-left:10px;"><input value="{$expense.name}" type="text" name="name" class="inputBg" /></td></tr>
+										<tr><td style="text-align:right;" >费用：</td><td style="text-align:left;padding-left:10px;"><input value="{$expense.fee}" type="text" name="fee" class="inputBg" /></td></tr>
+										<tr>
+											<td style="text-align:right;" >类型：</td>
+											<td style="text-align:left;padding-left:10px;">
+												<select class="inputBg" id="is_public" name="is_public">
+													<option value="1" {if $expense.is_public eq '1'}selected="selected"{/if}>公费</option>
+													<option value="0" {if $expense.is_public eq '0'}selected="selected"{/if}>私费</option>
+												</select>
+											</td>
+										</tr>
+										<tr id="group_tr">
+											<td style="text-align:right;" >结帐人：</td>
+											<td style="text-align:left;padding-left:10px;">
+												<select name="user_id" id="user_id" class="inputBg">
+													{foreach from=$expense.user_group item=user key=k}
+													<option value="{$k}" {if $k eq $expense.user_id}selected="selected"{/if}>{$user}</option>
+													{/foreach}
+												</select>
+											</td>
+										</tr>
+										<tr id="group_tr2">
+											<td style="text-align:right;" >消费组：</td>
+											<td style="text-align:left;padding-left:10px;">
+												<table style="width:300px;text-align:left;float:left">
+												<tr>
+												<td>
+												<select multiple="true" id="user_group" name="user_group[]">
+												{foreach from=$expense.user_group item=user key=k}
+													<option value="{$k}">{$user}</option>
+												{/foreach}
+												</select>
+												</td>
+												<td>
+												<input type="button" value="删除>>" id="del" /><br />
+												<input type="button" value="<<添加" id="add" /><br />
+												</td>
+												<td>
+												<select id="user_group2">
+												{foreach from=$users item=u}
+													<option value="{$u.id}">{$u.user_name}</option>
+												{/foreach}
+												</select>
+												</td>
+												</tr>
+												</table>
+											</td>
+										</tr>
+										<tr id="group_tr3"><td style="text-align:right;" >已结算：</td><td style="text-align:left;padding-left:10px;"><select class="inputBg" name="is_close"><option value="1" {if $expense.is_close eq 1}selected="selected"{/if}>是</option><option value="0" {if $expense.is_close eq 0}selected="selected"{/if}>否</option></select></td></tr>
+										<tr><td style="text-align:right;" >日期：</td><td style="text-align:left;padding-left:10px;"><input value="{$expense.date}" type="text" name="date" class="inputBg" /></td></tr>
+										<tr><td style="text-align:right;" >备注：</td><td style="text-align:left;padding-left:10px;"><textarea name="comment" cols="21" rows="2">{$expense.comment}</textarea></td></tr>
+										<tr><td colspan="2"><input name="id" type="hidden" value="{$expense.id}" /> </td></tr>
+										<tr><td colspan="2" style="padding-left:50px;"><input style="width:100px;height:22px" type="submit" value="保存" /></td></tr>
+								</tbody>
+    							<tfoot>
+    								<tr><td colspan="2"></td></tr>
+    							</tfoot>
+    						</table>
+    					</div>
+						</form>
+    				</div>
+					<script>
+						{literal}
+							var del=document.getElementById('del');
+							var add=document.getElementById('add');
+							var is_public=document.getElementById('is_public');
+							var user_id=document.getElementById('user_id');
+							var user_group=document.getElementById('user_group');
+							var user_group2=document.getElementById('user_group2');
+							var group_tr=document.getElementById('group_tr');
+							var group_tr2=document.getElementById('group_tr2');
+							var group_tr3=document.getElementById('group_tr3');
+							var selected=false;
+							var repeat=true;
+						{/literal}
+							//默认是私费
+							{if $expense.is_public eq '0'}
+							group_tr.style.display='none';
+							group_tr2.style.display='none';
+							group_tr3.style.display='none';
+							{/if}
+						{literal}
+							is_public.onchange=function()
+							{
+								if(is_public.value == 1)
+								{
+									group_tr.style.display='';
+									group_tr2.style.display='';
+									group_tr3.style.display='';
+								}
+								else
+								{
+									group_tr.style.display='none';
+									group_tr2.style.display='none';
+									group_tr3.style.display='none';
+								}
+							}
+							del.onclick=function()
+							{
+								for(var i=0;i<user_group.options.length;i++)
+								{
+									if(user_group.options[i].selected == true)
+									{
+										selected=true;
+										break;
+									}
+									else
+									{
+										selected=false;
+									}
+								}
+								if(!selected)
+								{
+									alert('请在左边列表选定一个需要删除的人');
+								}
+								else
+								{
+									if(user_group.options.length > 2)
+									{
+										user_group.remove(i);
+										user_id.remove(i);
+									}
+									else{
+										alert('至少得留2个人，才能叫“公费”吧');
+									}
+								}
+							}
+							add.onclick=function()
+							{	
+								for(var i=0;i<user_group2.options.length;i++)
+								{
+									if(user_group2.options[i].selected == true)
+									{
+										selected=true;
+										break;
+									}
+									else
+									{
+										selected=false;
+									}
+								}
+								if(!selected)
+								{
+									alert('请在右边列表选定一个需添加的人');
+								}
+								else
+								{
+									//判断重复
+									for(var i=0;i<user_group2.options.length;i++)
+									{
+										if(user_group2.options[i].selected == true)
+										{
+											break;
+										}
+									}
+									for(var j=0;j<user_group.options.length;j++)
+									{
+										if(user_group.options[j].value == user_group2.options[i].value)
+										{
+											repeat=true;
+											break;
+										}
+										else
+										{
+											repeat=false;
+										}
+									}
+									if(user_group.options.length == 0 )
+									{
+										//当添加消费人
+										repeat=false;
+									}
+									if(!repeat)
+									{	
+										var opt = document.createElement("OPTION");
+										var opt2 = document.createElement("OPTION");
+										opt.value=user_group2.options[i].value;
+										opt.text=user_group2.options[i].text;
+										opt2.value=user_group2.options[i].value;
+										opt2.text=user_group2.options[i].text;
+										user_group.add(opt,null);
+										user_id.add(opt2,null);
+										
+									}
+								}
+							}
+							document.expenseForm.onsubmit=function()
+							{
+								//选定所有消费组
+								for(var i=0;i<user_group.length;i++)
+								{
+									user_group[i].selected='selected';
+								}
+							}
+						{/literal}
+					</script>

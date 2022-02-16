@@ -1,0 +1,19 @@
+<div id="content">
+	<h3 class="title"><img src="images/user.gif" alt="user" /> <span id="hello">{$smarty.session.u}：欢迎登录，今天是 {$now}</span><span id="logout"><a href="?act=logout">退出</a></span></h3>
+	<div id="tableWrapper">
+		<h4 id="tableCaption"><img src="images/info.png" width="23" height="26" alt="info" /><span>系统消息</span></h4>
+			<table>
+				<tr><td><img src="images/information.gif" /></td><td style="font-size:14px;font-weight:bold">{$msg}</td></tr>
+					<tr>
+					<td>
+					  <ul style="margin:0; padding:0 10px" class="msg-link">
+					    {foreach from=$links item=link}
+					    <li style="list-style:none outside none"><a href="{$link.href}">{$link.text}</a></li>
+					    {/foreach}
+					  </ul>
+					</td>
+						<td></td>
+					</tr>
+				</table>
+	</div>
+</div>

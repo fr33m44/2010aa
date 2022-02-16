@@ -1,0 +1,30 @@
+﻿列表：		ndex.php == index.php?act=list
+排序		index.php?act=list&sort=last_update&order=asc
+排序		index.php?act=list&sort=last_update
+反序		index.php?act=list&sort=last_update&order=desc
+公费	  	index.php?act=search&is_public=1
+私费		index.php?act=search&is_public=0
+搜索		index.php?act=search&p1=v1&p2=v2
+详细		index.php?act=detail&id=?
+删除		index.php?act=del&id=?
+添加		index.php?act=add
+
+
+
+登录：	login.php?act=login
+退出：	login.php?act=logout
+
+张三支付：￥25	张三结算：￥-8
+李四支付：￥45	李四结算：￥12
+王五支付：￥30	王五结算：￥-3
+------------------
+总额：￥100     人数：￥3    平均费用￥33.33
+-------------------
+cc		1		0		13*1=13		0-13=13
+hjq		1		45.5	13*1=13		45.5-13=32.5	
+hk		1.5		0		13*1.5=19.5	0-19.5=-19.5
+-------------------------
+cc		1		5.5		13*1=13		5.5-13=-7.5
+hjq		1		40		13*1=13		40-13=27
+hk		1.5		0		13*1.5=19.5	0-19.5=-19.5
+45.5/3.5=13

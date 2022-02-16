@@ -1,0 +1,272 @@
+@CHARSET "UTF-8";
+/*公共样式*/
+*{
+	margin:0 auto;
+	font-size:12px;
+	font-family:'微软雅黑', Arial, Helvetica, sans-serif;
+}
+html, body
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+	text-align:center;
+	background:url(images/body_bg.gif) repeat-x;
+}
+a{
+	color:#000000;
+	text-decoration:none;
+}
+a:hover
+{
+	text-decoration:underline;
+}
+h3{
+	font-size:12px;
+}
+img{
+	border:0;
+	padding:0;
+	margin:0;
+}
+h1,h2,h3,h4,h5,h6{
+	font-size:12px;
+}
+#wrapper{
+	width:800px;
+}
+/*登录*/
+.inputText{
+	height:18px;
+	line-height:18px;
+	margin-top:12px;
+	font-size:18px;
+}
+#loginWindow{
+	background:#6dc2e7 url(images/login_bg.gif) repeat-x;
+}
+#loginBox{
+	width:529px;
+	height:271px;
+	margin:200px auto;
+	background:url(images/loginbox.gif) no-repeat;
+}
+#loginBox #loginInfo form
+{
+	width:529px;
+	height:146px;
+	padding-top:115px;
+	font-size:18px;
+}
+#loginBox #userInfo{
+	width:529px;
+}
+#loginBox #userInfo tr td input {
+	height:18px;
+	padding-bottom:7px;
+}
+#loginBtn{
+	width:61px;
+	height:25px;
+	border:none;
+	cursor:pointer;
+	background:url(images/login_btn.gif) no-repeat;
+}
+#loginReset{
+	width:61px;
+	height:25px;
+	background:url(images/login_reset.gif) no-repeat;
+	border:none;
+	cursor:pointer;
+}
+#loginBox #btn{
+}
+/* index   */
+#indexBody{
+	
+}
+#header{
+	width:800px;
+	height:109px;
+	background:url(images/header.gif) no-repeat;
+}
+.h_side{
+	background:url(images/header_bg.gif) repeat-x;
+	height:109px;
+	width:200px;
+	float:left;
+}
+#main{
+	width:800px;
+	height:600px;
+}
+#left{
+	width:20px;
+	height:491px;
+	background:url(images/left.gif) no-repeat;
+	float:left;
+}
+#right{
+	width:19px;
+	height:491px;
+	background:url(images/right.gif) no-repeat;
+	float:left;
+}
+#mid{
+	width:761px;
+	height:600px;
+	float:left;
+	
+}
+#nav{
+	width:150px;
+	height:484px;
+	float:left;
+	border:1px solid #6dc2e7;
+	border-top:none;
+	background:#ffffff;
+}
+#nav h3{
+	width:150px;
+	height:42px;
+}
+h3.title{
+	color:#ffffff;
+	background:url(images/h3_bg.gif) repeat-x;
+	padding-top:3px;
+	text-indent:10px;
+}
+#nav ul li{
+	background:url(images/dot_li.gif) 0 50% no-repeat;
+	list-style-type:none;
+	line-height:20px;
+	height:40px;
+	vertical-align:middle;
+	display:block;
+	width:70px;
+}
+#nav ul li span{
+	padding-top:12px;
+	display:block;
+}
+#content{
+	width:597px;
+	height:484px; 
+	float:left;
+	border:1px solid #6dc2e7;
+	border-top:none;
+	margin-left:10px;
+	background:#ffffff;
+}
+#content h3{
+	width:597px;
+	height:42px;
+	background:url(images/h3_bg.gif) repeat-x;
+	
+}
+#content h3 span{
+	vertical-align:super;
+}
+#content h3 #logout{
+	padding-left:263px;
+	background:url(images/logout_btn.gif) no-repeat 245px;
+}
+#content h3 span a{
+	color:#ffffff;
+}
+#tableCaption{
+	width:573px;
+	height:28px;
+	background:url(images/table_caption.gif) no-repeat;
+	text-align:left;
+	text-indent:1em;
+	color:#ffffff;
+}
+#tableCaption span{
+	vertical-align:super;
+}
+#tableWrapper{
+	margin:10px;
+}
+#expenseTable{
+	width:573px;
+	border:1px solid #6dc2e7;
+}
+#expenseTable thead,#expenseTable tfoot{
+	background:url(images/th_bg.gif) repeat-x;
+	width:573px;
+	height:23px;
+}
+tfoot  a{
+	text-decoration:underline;
+	margin-left:10px;
+}
+#pageGo
+{
+	margin-left:100px;
+}
+#pageGo input{
+	width:20px;
+}
+#tableWrapper table td{
+	text-align:center;
+	height:2.2em;
+} 
+.edit img{
+	vertical-align:middle;
+}
+
+#pageGo form{
+	display:inline;
+}
+/* detail */
+.inputBg{
+	width:200px;
+}
+.field{
+	text-align:right;
+	padding:5px 1em;
+	width:50%;
+	
+}
+#search_result{
+	position:absolute;
+	top:324px;
+	left:535px;
+	width:200px;
+	height:100px;
+	background:#fefefe;
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+	border-bottom:1px solid #dddddd;
+}
+#search_result ul li{
+	list-style:none outside none;
+	cursor:pointer;
+}
+#user_group span{
+	cursor:default;
+	display:block;
+	float:left;
+	font-size:11px;
+	line-height:1.8em;
+	margin:10px;
+	white-space:nowrap;
+}
+#user_group span a{
+	float:left;
+	background:url(images/xit.gif) no-repeat scroll 0 0 transparent;
+	cursor:pointer;
+	display:block;
+	width:10px;
+	height:10px;
+	margin:6px 1px 0 -9px;
+	overflow:hidden;
+	text-indent:-9999px;
+}
+#user_group span a:hover{
+	text-decoration:none;
+	background:url(images/xit.gif) no-repeat scroll -10px 0 transparent;
+}

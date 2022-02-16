@@ -1,0 +1,23 @@
+<div id="content">
+	<h3 class="title"><img src="images/user.gif" alt="user" /> <span id="hello">{$smarty.session.u}：欢迎登录，今天是 {$now}</span><span id="logout"><a href="?act=logout">退出</a></span></h3>
+	<div id="tableWrapper">
+		<h4 id="tableCaption"><img src="images/money.gif" alt="money" /><span>费用记录</span></h4>
+		<table border="0" cellspacing="0" id="expenseTable">
+			<thead>
+				<tr><th><input type="checkbox" /></th><th>序号</th><th>物品</th><th>费用</th><th>类型</th><th>结帐人</th><th>已结算</th><th>日期</th><th>操作</th></tr>
+			</thead>
+			<tbody>
+				{foreach from=$expense_list item=expense}
+				<tr id="tr{$expense.id}"><td><input type="checkbox" /></td><td>{$expense.id}</td><td>{$expense.name|truncate:24:'...':false}</td><td>￥{$expense.fee}</td><td>{if $expense.is_public}公费{else}私费{/if}</td><td>{$expense.user_name}</td><td>{ if $expense.is_close}是{else}否{/if}</td><td>{$expense.date}</td><td><span class="edit"><a href="?act=detail&id={$expense.id}" ><img src="images/edit.png" alt="编辑" title="编辑" /></a>  <a href="javascript:del({$expense.id})"><img src="images/delete.png" alt="删除" title="删除" /></a></span></td></tr>
+				{/foreach}
+			</tbody>
+			<tfoot>
+				<tr><td colspan="9"><span>共{$row_count}条记录</span><span>当前第{if $p<1}1{else}{$p}{/if}/{$pages}页</span><span><a href="?act=list">首页</a><a href="{if $p<=1}#{else}?act=list&p={$p-1}{/if}">上一页</a><a href="{if $p>=$pages}#{else}?act=list&p={$p+1}{/if}">下一页</a><a href="?act=list&p={$pages}">尾页</a></span><span id="pageGo">转到<form method="get" action="?act=list"><input name="act" type="hidden" value="list" /><input style="width:22px;height:22px" type="text" name="p" value="{$p}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />页 <input type="submit" style="width:40px;height:22px" value="转"/></form> </span></td></tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+	<script>
+		tableColor(document.getElementById('expenseTable'));
+		var process_request = "正在处理您的请求...";
+	</script>

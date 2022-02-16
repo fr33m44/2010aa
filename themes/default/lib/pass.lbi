@@ -1,0 +1,35 @@
+    				<div id="content">
+    					<h3 class="title"><img src="images/user.gif" alt="user" /> <span id="hello">{$smarty.session.u}：欢迎登录，今天是 {$now}</span><span id="logout"><a href="?act=logout">退出</a></span></h3>
+    					<form method="post" action="?act=modpass" name="modpassForm">
+						<div id="tableWrapper">
+    						<h4 id="tableCaption"><img src="images/money.gif" alt="money" /><span>修改密码</span></h4>
+    						<table border="0" cellspacing="0" width="100%" id="expenseTable">
+    							<thead>
+    							</thead>
+    							<tbody>
+    								<tr><td>旧密码：</td><td><input type="password" name="oldpass" id="oldpass" /> </td></tr>
+									<tr><td>新密码：</td><td><input type="password" name="newpass" id="newpass" /> </td></tr>
+									<tr><td>重复新密码：</td><td><input type="password" name="newpass2" id="newpass2" /> </td></tr>
+									<tr><td colspan="2"><center><input type="submit" value="保存" /></center></td></tr>
+    							</tbody>
+    							<tfoot>
+    								<tr><td colspan="2"></td></tr>
+    							</tfoot>
+    						</table>
+    					</div>
+						</form>
+    				</div>
+					<script>
+						{literal}
+							var newpass=document.getElementById('newpass');
+							var newpass2=document.getElementById('newpass2');
+							document.modpassForm.onsubmit=function()
+							{
+								if(newpass.value != newpass2.value)
+								{
+									alert('两次输入新密码不一致！');
+									return false;
+								}
+							}
+						{/literal}
+					</script> 
